@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3eee4">
+  <meta name="description" content="صفحه اختصاصی داستان پلکانی به ماه؛ مطالعه نسخه PDF و شنیدن نسخه صوتی.">
+  <title>پلکانی به ماه | داستان</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f3eee4;
+      --paper-deep: #e9dfcf;
+      --ink: #493a2c;
+      --muted: #82715e;
+      --line: #d9cbb8;
+      --accent: #80664b;
+      --accent-dark: #685039;
+      --white: #fffdf8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(191,164,119,.13) 0 2px, transparent 3px),
+        radial-gradient(circle at 86% 18%, rgba(191,164,119,.16) 0 2px, transparent 3px),
+        var(--paper);
+      color: var(--ink);
+      font-family: Tahoma, Arial, sans-serif;
+      display: grid;
+      place-items: center;
+    }
+    .page {
+      width: min(100%, 620px);
+      background: rgba(255,253,248,.78);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: clamp(24px, 6vw, 48px);
+      box-shadow: 0 18px 55px rgba(75, 57, 37, .08);
+      position: relative;
+      overflow: hidden;
+    }
+    .page::before, .page::after {
+      content: "✦";
+      position: absolute;
+      color: #c1a77d;
+      opacity: .55;
+      font-size: 18px;
+      pointer-events: none;
+    }
+    .page::before { top: 28px; right: 30px; }
+    .page::after { bottom: 30px; left: 32px; font-size: 13px; }
+    .eyebrow {
+      margin: 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+    .moon {
+      width: 76px;
+      height: 76px;
+      margin: 22px auto 15px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #8c704e;
+      background: linear-gradient(145deg, #f7f0df, #e7d8bd);
+      border: 1px solid #d8c6a7;
+      box-shadow: 0 8px 22px rgba(116, 88, 53, .10);
+      font-size: 39px;
+      line-height: 1;
+    }
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: clamp(28px, 7vw, 40px);
+      font-weight: 700;
+      letter-spacing: -.04em;
+    }
+    .author {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin: 12px 0 28px;
+    }
+    .story-code {
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto 25px;
+      padding: 10px 17px;
+      border: 1px solid #c9ad80;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #eee2cc, #f8f2e7);
+      color: #5d452d;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .035em;
+      text-align: center;
+      direction: ltr;
+      box-shadow: 0 5px 15px rgba(95, 69, 39, .08);
+    }
+    .rule {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      margin: 0 0 25px;
+    }
+    .section {
+      border: 1px solid var(--line);
+      background: var(--white);
+      border-radius: 18px;
+      padding: 21px;
+      margin-top: 16px;
+    }
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 15px;
+    }
+    .symbol {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: var(--paper-deep);
+      color: var(--accent-dark);
+      font-size: 21px;
+      flex: 0 0 auto;
+    }
+    h2 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .hint {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .pdf-link {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #fffdf8;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .pdf-link:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .pdf-link:focus-visible, audio:focus-visible {
+      outline: 3px solid #b99b70;
+      outline-offset: 3px;
+    }
+    audio {
+      width: 100%;
+      display: block;
+      margin-top: 5px;
+      accent-color: var(--accent);
+    }
+    .download {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--accent-dark);
+      font-size: 12px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    footer {
+      margin-top: 27px;
+      text-align: center;
+      color: #9a8872;
+      font-size: 11px;
+    }
+    @media (max-width: 420px) {
+      body { padding: 14px 10px; }
+      .page { border-radius: 22px; padding: 25px 18px; }
+      .section { padding: 17px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow">صفحه اختصاصی داستان</p>
+    <div class="moon" aria-hidden="true">☾</div>
+    <h1>پلکانی به ماه</h1>
+    <p class="author">نویسنده: طاها فضلی</p>
+    <div class="story-code" aria-label="شناسه داستان">Taha_fazli_pdf_mpt3</div>
+    <div class="rule"></div>
+
+    <section class="section" aria-labelledby="pdf-title">
+      <div class="section-head">
+        <div class="symbol" aria-hidden="true">▤</div>
+        <div>
+          <h2 id="pdf-title">نسخه نوشتاری داستان</h2>
+          <p class="hint">برای خواندن داستان، فایل PDF را باز کنید.</p>
+        </div>
+      </div>
+      <a class="pdf-link" href="story.pdf" target="_blank" rel="noopener">
+        <span aria-hidden="true">↗</span>
+        مطالعه داستان
+      </a>
+      <a class="download" href="story.pdf" download>دریافت فایل PDF</a>
+    </section>
+
+    <section class="section" aria-labelledby="audio-title">
+      <div class="section-head">
+        <div class="symbol" aria-hidden="true">♫</div>
+        <div>
+          <h2 id="audio-title">نسخه صوتی داستان</h2>
+          <p class="hint">برای شنیدن داستان، دکمه پخش را بزنید.</p>
+        </div>
+      </div>
+      <audio controls preload="metadata">
+        <source src="story.mp3" type="audio/mpeg">
+        مرورگر شما از پخش صوت پشتیبانی نمی‌کند.
+      </audio>
+      <a class="download" href="story.mp3" download>دریافت فایل صوتی MP3</a>
+    </section>
+
+    <footer>یک داستان، دو راه برای همراه شدن</footer>
+  </main>
+</body>
+</html>
